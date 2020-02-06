@@ -2,11 +2,13 @@ package com.example.retrofitupt;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -68,8 +70,15 @@ public class MainActivity extends AppCompatActivity {
             //Metodo que se ejecutara cuando no hay problemas y obtenemos respuesta del server
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-//Exactamente igual a la manera sincrona,la respuesta esta en el body
+            //Exactamente igual a la manera sincrona,la respuesta esta en el body
+                String mirespuesta=response.body();
                 Log.e("milogin: ",response.body());
+
+                if(mirespuesta.equals("success"))
+                    startActivity(new Intent(MainActivity.this, InsertarCliente.class));
+                else{
+                    Toast.makeText(MainActivity.this, "Ingreso Fallido", Toast.LENGTH_LONG);
+                }
             }
             //Metodo que se ejecutara cuando ocurrio algun problema
             @Override
