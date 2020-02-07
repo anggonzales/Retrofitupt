@@ -76,8 +76,16 @@ public class MainActivity extends AppCompatActivity {
 
                 if(mirespuesta.equals("success"))
                     startActivity(new Intent(MainActivity.this, InsertarCliente.class));
-                else{
-                    Toast.makeText(MainActivity.this, "Ingreso Fallido", Toast.LENGTH_LONG);
+                else
+                {
+                    runOnUiThread(new Runnable()
+                    {
+                        @Override
+                        public void run()
+                        {
+                            Toast.makeText(getApplicationContext(), "Ingreso fallido",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
             //Metodo que se ejecutara cuando ocurrio algun problema
