@@ -83,8 +83,6 @@ public class InsertarCliente extends AppCompatActivity {
                         }
                     });
                 }
-
-
             }
             //Metodo que se ejecutara cuando ocurrio algun problema
             @Override
